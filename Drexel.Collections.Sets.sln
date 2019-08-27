@@ -27,6 +27,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drexel.Collections.Sets.Imm
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drexel.Collections.Sets.Immutable.Tests.Shared", "tests\Drexel.Collections.Sets.Immutable.Tests.Shared\Drexel.Collections.Sets.Immutable.Tests.Shared.csproj", "{2CE9A403-0EA4-4B14-9280-DF08AC16C9A0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".StyleCop", ".StyleCop", "{68C5B8E2-F2A7-4E6A-B258-3166573B4CE4}"
+	ProjectSection(SolutionItems) = preProject
+		Solution_Items\.StyleCop\CodeAnalysisDictionary.xml = Solution_Items\.StyleCop\CodeAnalysisDictionary.xml
+		Solution_Items\.StyleCop\Drexel.Collections.Sets.MSTest.ruleset = Solution_Items\.StyleCop\Drexel.Collections.Sets.MSTest.ruleset
+		Solution_Items\.StyleCop\Drexel.Collections.Sets.ruleset = Solution_Items\.StyleCop\Drexel.Collections.Sets.ruleset
+		Solution_Items\.StyleCop\stylecop.json = Solution_Items\.StyleCop\stylecop.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -68,6 +76,7 @@ Global
 		{5FDBE68E-786B-41C7-BE65-CDDC01414006} = {7699FFBE-CFF8-4E3F-8046-72CDB3468E72}
 		{8824552B-E9E3-402E-B857-3F019D50EEB9} = {8243E36B-FE6C-435E-ACAD-F1E48E620CF1}
 		{2CE9A403-0EA4-4B14-9280-DF08AC16C9A0} = {8243E36B-FE6C-435E-ACAD-F1E48E620CF1}
+		{68C5B8E2-F2A7-4E6A-B258-3166573B4CE4} = {CEDDFC49-BFBD-496A-A221-84A660C246A8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A072314E-8B89-49DB-A0C0-CC23E5F60C68}

@@ -9,6 +9,10 @@ namespace Drexel.Collections.Generic
     /// <typeparam name="T">
     /// The type of the elements.
     /// </typeparam>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage(
+        "Naming",
+        "CA1710:Identifiers should have correct suffix",
+        Justification = "Naming inherited from existing convention.")]
     public interface IReadOnlySet<out T> : IReadOnlyCollection<T>
     {
     }

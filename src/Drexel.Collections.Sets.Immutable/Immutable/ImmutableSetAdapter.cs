@@ -11,12 +11,18 @@ namespace Drexel.Collections.Immutable
     /// <typeparam name="T">
     /// The type of the elements contained by the set.
     /// </typeparam>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage(
+        "Naming",
+        "CA1710:Identifiers should have correct suffix",
+        Justification = "Naming inherited from Adapter pattern.")]
     public sealed class ImmutableSetAdapter<T> :
         Drexel.Collections.Immutable.IImmutableSet<T>,
         IEquatable<Drexel.Collections.Immutable.IImmutableSet<T>>,
         IEquatable<System.Collections.Immutable.IImmutableSet<T>>
     {
+#pragma warning disable CA1823 // Unused field. False positive - this field is used.
         private const ImmutableSetAdapter<T>? InitialClearSetValue = default;
+#pragma warning restore CA1823 // Unused field.
         private ImmutableSetAdapter<T>? clearSet;
 
         /// <summary>
@@ -207,26 +213,34 @@ namespace Drexel.Collections.Immutable
             }
         }
 
+        /// <inheritdoc/>
         System.Collections.Immutable.IImmutableSet<T> System.Collections.Immutable.IImmutableSet<T>.Add(T value) =>
             this.Set.Add(value);
 
+        /// <inheritdoc/>
         System.Collections.Immutable.IImmutableSet<T> System.Collections.Immutable.IImmutableSet<T>.Clear() =>
             this.Set.Clear();
 
+        /// <inheritdoc/>
         System.Collections.Immutable.IImmutableSet<T> System.Collections.Immutable.IImmutableSet<T>.Except(IEnumerable<T> other) =>
             this.Set.Except(other);
 
+        /// <inheritdoc/>
         IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
 
+        /// <inheritdoc/>
         System.Collections.Immutable.IImmutableSet<T> System.Collections.Immutable.IImmutableSet<T>.Intersect(IEnumerable<T> other) =>
             this.Set.Intersect(other);
 
+        /// <inheritdoc/>
         System.Collections.Immutable.IImmutableSet<T> System.Collections.Immutable.IImmutableSet<T>.Remove(T value) =>
             this.Set.Remove(value);
 
+        /// <inheritdoc/>
         System.Collections.Immutable.IImmutableSet<T> System.Collections.Immutable.IImmutableSet<T>.SymmetricExcept(IEnumerable<T> other) =>
             this.Set.SymmetricExcept(other);
 
+        /// <inheritdoc/>
         System.Collections.Immutable.IImmutableSet<T> System.Collections.Immutable.IImmutableSet<T>.Union(IEnumerable<T> other) =>
             this.Set.Union(other);
     }

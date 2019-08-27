@@ -40,7 +40,9 @@ namespace Drexel.Collections.Immutable.Tests.Immutable
                     tryGetValueDelegate: (int x, out int y) => { methodsCalled[15]++; return realSet.TryGetValue(x, out y); },
                     unionDelegate: x => { methodsCalled[16]++; return realSet.Union(x); });
 
+#pragma warning disable IDE0028 // Simplify collection initialization. Intentionally calling .Add separately for clarity
             ImmutableSetAdapter<int> set = new ImmutableSetAdapter<int>(backingSet);
+#pragma warning restore IDE0028 // Simplify collection initialization.
 
             set.Add(12);
             set.Clear();

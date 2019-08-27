@@ -54,7 +54,7 @@ namespace Drexel.Collections.Tests.Generic
                     x => methodsCalled[9]++,
                     x => { methodsCalled[10]++; return true; },
                     x => { methodsCalled[11]++; return true; },
-                    ()  => { methodsCalled[12]++; return true; },
+                    () => { methodsCalled[12]++; return true; },
                     x => { methodsCalled[13]++; return true; },
                     x => { methodsCalled[14]++; return true; },
                     x => { methodsCalled[15]++; return true; },
@@ -64,7 +64,10 @@ namespace Drexel.Collections.Tests.Generic
                     () => { methodsCalled[19]++; return string.Empty; },
                     x => methodsCalled[20]++);
 
+#pragma warning disable IDE0028 // Simplify collection initialization. Intentionally calling .Add separately for clarity
             SetAdapter<int> set = new SetAdapter<int>(backingSet);
+#pragma warning restore IDE0028 // Simplify collection initialization
+
             set.Add(12);
             set.Clear();
             set.Contains(12);

@@ -9,11 +9,16 @@ namespace Drexel.Collections.Immutable
     /// <typeparam name="T">
     /// The type of the elements.
     /// </typeparam>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage(
+        "Naming",
+        "CA1710:Identifiers should have correct suffix",
+        Justification = "Naming inherited from existing interface.")]
     public interface IImmutableSet<T> : IReadOnlyInvariantSet<T>, System.Collections.Immutable.IImmutableSet<T>
     {
         // The new methods defined in this interface are to make it so that calls to this class are unambiguous, or
         // to return a Drexel.Collections.Immutable.IImutableSet`1 instead of a
         // System.Collections.Immutable.IImmutableSet`1.
+
         /// <summary>
         /// Gets the number of elements contained in the <see cref="IImmutableSet{T}"/>.
         /// </summary>

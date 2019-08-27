@@ -11,6 +11,10 @@ namespace Drexel.Collections.Generic
     /// <typeparam name="T">
     /// The type of the elements contained by the set.
     /// </typeparam>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage(
+        "Naming",
+        "CA1710:Identifiers should have correct suffix",
+        Justification = "Naming inherited from existing Adapter design pattern.")]
     public sealed class SetAdapter<T> :
         Drexel.Collections.Generic.ISet<T>,
         IEquatable<Drexel.Collections.Generic.ISet<T>>,

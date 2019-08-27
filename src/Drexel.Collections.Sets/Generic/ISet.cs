@@ -8,18 +8,20 @@ namespace Drexel.Collections.Generic
     /// <typeparam name="T">
     /// The type of the elements.
     /// </typeparam>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage(
+        "Naming",
+        "CA1710:Identifiers should have correct suffix",
+        Justification = "Naming inherited from existing interface.")]
     public interface ISet<T> : IReadOnlyInvariantSet<T>, System.Collections.Generic.ISet<T>
     {
-        // Need to hide the Count property so that implementors don't have to explicitly implement both the ISet
-        // and the IReadOnlyInvariantSet Count properties. This doesn't fix the issue that they could still choose to
-        // do so, but I'm going to discount this because of how unlikely it is that it's intentional.
         /// <summary>
         /// Gets the number of elements contained in the <see cref="ISet{T}"/>.
         /// </summary>
+        // Need to hide the Count property so that implementors don't have to explicitly implement both the ISet
+        // and the IReadOnlyInvariantSet Count properties. This doesn't fix the issue that they could still choose to
+        // do so, but I'm going to discount this because of how unlikely it is that it's intentional.
         new int Count { get; }
 
-        // Need to hide the Add method because ICollection's Add doesn't return a value, but we want to indicate
-        // whether the element was added or not.
         /// <summary>
         /// Adds an element to the current set and returns a value to indicate if the element was successfully added.
         /// </summary>
@@ -30,11 +32,10 @@ namespace Drexel.Collections.Generic
         /// <see langword="true"/> if the element was added to the set; <see langword="false"/> if the element is
         /// already in the set.
         /// </returns>
+        // Need to hide the Add method because ICollection's Add doesn't return a value, but we want to indicate
+        // whether the element was added or not.
         new bool Add(T item);
 
-        // Need to hide the Contains method so that implementors don't have to explicitly implement both the
-        // ISet and the IReadOnlyInvariantSet Contains methods. This is the same issue as the earlier Count
-        // property.
         /// <summary>
         /// Determines whether the current set contains the specified element.
         /// </summary>
@@ -44,9 +45,11 @@ namespace Drexel.Collections.Generic
         /// <returns>
         /// <see langword="true"/> if the item is found in the current set; otherwise, <see langword="false"/>.
         /// </returns>
+        // Need to hide the Contains method so that implementors don't have to explicitly implement both the
+        // ISet and the IReadOnlyInvariantSet Contains methods. This is the same issue as the earlier Count
+        // property.
         new bool Contains(T item);
 
-        // Same as above.
         /// <summary>
         /// Determines whether the current set is a subset of the specified <paramref name="other"/>. Being a subset
         /// means that <paramref name="other"/> contains all elements of this set.
@@ -58,9 +61,9 @@ namespace Drexel.Collections.Generic
         /// <see langword="true"/> if the current set is a subset of the specified <paramref name="other"/>; otherwise,
         /// <see langword="false"/>.
         /// </returns>
+        // Same as above.
         new bool IsSubsetOf(IEnumerable<T> other);
 
-        // Same as above.
         /// <summary>
         /// Determines whether the current set is a superset of the specified <paramref name="other"/>. Being a
         /// superset means that this set contains all elements of <paramref name="other"/>.
@@ -72,9 +75,9 @@ namespace Drexel.Collections.Generic
         /// <see langword="true"/> if the current set is a superset of the specified <paramref name="other"/>;
         /// otherwise, <see langword="false"/>.
         /// </returns>
+        // Same as above.
         new bool IsSupersetOf(IEnumerable<T> other);
 
-        // Same as above.
         /// <summary>
         /// Determines whether the current set is a proper subset of the specified <paramref name="other"/>. Being a
         /// "proper" subset means that <paramref name="other"/> contains all elements of this set, as well as at least
@@ -87,9 +90,9 @@ namespace Drexel.Collections.Generic
         /// <see langword="true"/> if the current set is a proper subset of the specified <paramref name="other"/>;
         /// otherwise, <see langword="false"/>.
         /// </returns>
+        // Same as above.
         new bool IsProperSubsetOf(IEnumerable<T> other);
 
-        // Same as above.
         /// <summary>
         /// Determines whether the current set is a proper superset of the specified <paramref name="other"/>. Being a
         /// "proper" superset means that this set contains all the elements of <paramref name="other"/>, as well as at
@@ -102,9 +105,9 @@ namespace Drexel.Collections.Generic
         /// <see langword="true"/> if the current set is a proper superset of the specified <paramref name="other"/>;
         /// otherwise, <see langword="false"/>.
         /// </returns>
+        // Same as above.
         new bool IsProperSupersetOf(IEnumerable<T> other);
 
-        // Same as above.
         /// <summary>
         /// Determines whether the current set overlaps the specified <paramref name="other"/>. Overlapping means that
         /// this set contains at least one element also contained by <paramref name="other"/>.
@@ -116,9 +119,9 @@ namespace Drexel.Collections.Generic
         /// <see langword="true"/> if the current set overlaps the specified <paramref name="other"/>; otherwise,
         /// <see langword="false"/>.
         /// </returns>
+        // Same as above.
         new bool Overlaps(IEnumerable<T> other);
 
-        // Same as above.
         /// <summary>
         /// Determines whether the current set is equal to the specified <paramref name="other"/>.
         /// </summary>
@@ -129,6 +132,7 @@ namespace Drexel.Collections.Generic
         /// <see langword="true"/> if the current set is equal to the specified <paramref name="other"/>; otherwise,
         /// <see langword="false"/>.
         /// </returns>
+        // Same as above.
         new bool SetEquals(IEnumerable<T> other);
     }
 }
