@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <RootNamespace>Drexel.Collections</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Version>1.0.0</Version>
+    <Authors>Max Drexel</Authors>
+    <Description>Defines useful set-related interfaces, such as IReadOnlySet.</Description>
+    <Copyright>Copyright 2019</Copyright>
+    <PackageLicenseUrl>https://github.com/ltnublet/Drexel.Collections.Sets/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/ltnublet/Drexel.Collections.Sets</PackageProjectUrl>
+    <PackageTags>collection collections set sets drexel</PackageTags>
+    <PackageReleaseNotes>1.0.0: Initial release</PackageReleaseNotes>
+  </PropertyGroup>
+
+</Project>
