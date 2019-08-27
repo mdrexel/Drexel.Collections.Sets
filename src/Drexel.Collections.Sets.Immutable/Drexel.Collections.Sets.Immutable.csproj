@@ -14,8 +14,8 @@
     <Authors>Max Drexel</Authors>
     <Description>Defines an IImmutableSet that implements IReadOnlySet.</Description>
     <Copyright>Copyright 2019</Copyright>
-    <PackageLicenseUrl>https://github.com/ltnublet/Drexel.Collections.Sets/blob/master/LICENSE</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/ltnublet/Drexel.Collections.Sets</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/mdrexel/Drexel.Collections.Sets/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/mdrexel/Drexel.Collections.Sets</PackageProjectUrl>
     <PackageTags>collection collections set sets immutable drexel</PackageTags>
     <PackageReleaseNotes>1.0.0: Initial release</PackageReleaseNotes>
   </PropertyGroup>
