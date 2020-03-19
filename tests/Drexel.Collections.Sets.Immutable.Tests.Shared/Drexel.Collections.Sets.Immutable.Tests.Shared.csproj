@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
     <RootNamespace>Drexel.Collections.Immutable.Tests.Shared</RootNamespace>
     <CodeAnalysisRuleSet>..\..\Solution_Items\.StyleCop\Drexel.Collections.Sets.MSTest.ruleset</CodeAnalysisRuleSet>
+    <UserSecretsId>09ce1fe3-eef3-45c5-ad32-de1a5d45f2eb</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.4">
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
