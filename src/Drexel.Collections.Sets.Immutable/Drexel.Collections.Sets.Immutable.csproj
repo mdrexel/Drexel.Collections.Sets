@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard1.0</TargetFramework>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -10,14 +10,15 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>1.0.0</Version>
+    <Version>2.0.0</Version>
     <Authors>Max Drexel</Authors>
     <Description>Defines an IImmutableSet that implements IReadOnlySet.</Description>
-    <Copyright>Copyright 2019</Copyright>
-    <PackageLicenseUrl>https://github.com/mdrexel/Drexel.Collections.Sets/blob/master/LICENSE</PackageLicenseUrl>
+    <Copyright>Copyright 2019-2020</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/mdrexel/Drexel.Collections.Sets</PackageProjectUrl>
     <PackageTags>collection collections set sets immutable drexel</PackageTags>
-    <PackageReleaseNotes>1.0.0: Initial release</PackageReleaseNotes>
+    <PackageReleaseNotes>2.0.0: Change target framework from .NET Standard 2.0 to .NET Standard 1.0
+1.0.0: Initial release</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
@@ -26,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Drexel.Collections.Sets" Version="1.0.0" />
+    <PackageReference Include="Drexel.Collections.Sets" Version="2.0.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
