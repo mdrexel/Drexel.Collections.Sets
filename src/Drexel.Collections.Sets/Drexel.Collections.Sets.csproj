@@ -14,7 +14,7 @@
     <Authors>Max Drexel</Authors>
     <Description>Defines useful set-related interfaces, such as IReadOnlySet.</Description>
     <Copyright>Copyright 2019-2020</Copyright>
-    <PackageLicenseUrl>https://github.com/mdrexel/Drexel.Collections.Sets/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/mdrexel/Drexel.Collections.Sets</PackageProjectUrl>
     <PackageTags>collection collections set sets drexel</PackageTags>
     <PackageReleaseNotes>2.0.0: Change target framework from .NET Standard 2.0 to .NET Standard 1.0
