@@ -21,7 +21,8 @@ namespace Drexel.Collections.Generic
         Drexel.Collections.Generic.ISet<T>,
         IEquatable<Drexel.Collections.Generic.ISet<T>>,
         IEquatable<System.Collections.Generic.ISet<T>>,
-        IEquatable<System.Collections.Generic.IReadOnlyCollection<T>>
+        IEquatable<System.Collections.Generic.IReadOnlyCollection<T>>,
+        IEquatable<System.Collections.Generic.ICollection<T>>
     {
         private readonly ISet<T> adapter;
 
@@ -113,6 +114,9 @@ namespace Drexel.Collections.Generic
 
         /// <inheritdoc/>
         public bool Equals(System.Collections.Generic.IReadOnlyCollection<T> other) => this.adapter.Equals(other);
+
+        /// <inheritdoc/>
+        public bool Equals(ICollection<T> other) => this.adapter.Equals(other);
 
         /// <inheritdoc/>
         public void ExceptWith(IEnumerable<T> other) => this.adapter.ExceptWith(other);
