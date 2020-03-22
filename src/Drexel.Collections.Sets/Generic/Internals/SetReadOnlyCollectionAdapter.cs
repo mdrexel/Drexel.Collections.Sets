@@ -36,7 +36,7 @@ namespace Drexel.Collections.Generic.Internals
         /// <see langword="null"/>, the default equality comparer for the type <typeparamref name="T"/> will be used.
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// Thrown when <paramref name="collection"/> or <paramref name="comparer"/> are <see langword="null"/>.
+        /// Thrown when <paramref name="collection"/> is <see langword="null"/>.
         /// </exception>
         public SetReadOnlyCollectionAdapter(
             System.Collections.Generic.IReadOnlyCollection<T> collection,
