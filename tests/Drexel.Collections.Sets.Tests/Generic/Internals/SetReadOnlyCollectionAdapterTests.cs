@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using Drexel.Collections.Generic.Internals;
 using Drexel.Collections.Tests.Shared.Mocks;
@@ -63,14 +64,7 @@ namespace Drexel.Collections.Tests.Generic.Internals
 
             SetReadOnlyCollectionAdapter<int> adapter =
                 new SetReadOnlyCollectionAdapter<int>(
-                    new int[]
-                    {
-                        1,
-                        2,
-                        3,
-                        4,
-                        5
-                    },
+                    new int[] { 1, 2, 3, 4, 5 },
                     comparer);
 
             Assert.IsTrue(adapter.Contains(4));
@@ -85,17 +79,44 @@ namespace Drexel.Collections.Tests.Generic.Internals
 
             SetReadOnlyCollectionAdapter<int> adapter =
                 new SetReadOnlyCollectionAdapter<int>(
-                    new int[]
-                    {
-                        1,
-                        2,
-                        3,
-                        4,
-                        5
-                    },
+                    new int[] { 1, 2, 3, 4, 5 },
                     comparer);
 
             Assert.IsFalse(adapter.Contains(6));
+        }
+
+        [TestMethod]
+        public void SetReadOnlyCollectionAdapter_Count_Succeeds()
+        {
+            int[] array = new int[43];
+            SetReadOnlyCollectionAdapter<int> adapter = new SetReadOnlyCollectionAdapter<int>(array);
+
+            Assert.AreEqual(array.Length, adapter.Count);
+        }
+
+        [TestMethod]
+        public void SetReadOnlyCollectionAdapter_CopyTo_Succeeds()
+        {
+            int[] array = Enumerable.Range(1, 7).ToArray();
+            int[] destination = Enumerable.Repeat(-1, 12).ToArray();
+
+            SetReadOnlyCollectionAdapter<int> adapter = new SetReadOnlyCollectionAdapter<int>(array);
+            adapter.CopyTo(destination, 2);
+
+            for (int counter = 0; counter < 2; counter++)
+            {
+                Assert.AreEqual(-1, destination[counter]);
+            }
+
+            for (int counter = 2; counter < 9; counter++)
+            {
+                Assert.AreEqual(array[counter - 2], destination[counter]);
+            }
+
+            for (int counter = 9; counter < destination.Length; counter++)
+            {
+                Assert.AreEqual(-1, destination[counter]);
+            }
         }
     }
 }
