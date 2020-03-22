@@ -160,5 +160,38 @@ namespace Drexel.Collections.Tests.Generic.Internals
 
             CollectionAssert.AreEquivalent(new int[] { 14, 16 }, backingList);
         }
+
+        [TestMethod]
+        public void SetCollectionAdapter_Remove_ElementPresent_ReturnsTrue()
+        {
+            List<int> backingList = new List<int>() { 12, 13, 14 };
+            SetCollectionAdapter<int> adapter = new SetCollectionAdapter<int>(backingList);
+
+            Assert.IsTrue(adapter.Remove(13));
+            CollectionAssert.AreEquivalent(new int[] { 12, 14 }, backingList);
+        }
+
+        [TestMethod]
+        public void SetCollectionAdapter_Remove_ElementNotPresent_ReturnsFalse()
+        {
+            List<int> backingList = new List<int>() { 12, 13, 14 };
+            SetCollectionAdapter<int> adapter = new SetCollectionAdapter<int>(backingList);
+
+            Assert.IsFalse(adapter.Remove(15));
+            CollectionAssert.AreEquivalent(new int[] { 12, 13, 14 }, backingList);
+        }
+
+        [TestMethod]
+        public void SetCollectionAdapter_Remove_IsReadOnly_ThrowsNotSupported()
+        {
+            ICollection<int> backingList = new ReadOnlyCollection<int>(new List<int>() { 12, 13, 14 });
+            SetCollectionAdapter<int> adapter = new SetCollectionAdapter<int>(backingList);
+
+            NotSupportedException e = Assert.ThrowsException<NotSupportedException>(
+                () => adapter.Remove(13));
+            Assert.AreEqual(
+                ExceptionMessages.CollectionIsReadOnly,
+                e.Message);
+        }
     }
 }

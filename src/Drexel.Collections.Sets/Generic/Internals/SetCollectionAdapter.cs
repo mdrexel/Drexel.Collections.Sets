@@ -31,9 +31,10 @@ namespace Drexel.Collections.Generic.Internals
         /// The set to adapt.
         /// </param>
         /// <param name="comparer">
-        /// The comparer to use when comparing equality of instances contained by <paramref name="collection"/>. This
-        /// comparer is used when the methods on the <see cref="ISet{T}"/> interface are called. If
+        /// The comparer to use when comparing equality of instances contained by <paramref name="collection"/>. If
         /// <see langword="null"/>, the default equality comparer for the type <typeparamref name="T"/> will be used.
+        /// It is assumed that the supplied <paramref name="collection"/> uses the same rules for equality as
+        /// <paramref name="comparer"/>.
         /// </param>
         /// <exception cref="ArgumentNullException">
         /// Thrown when <paramref name="collection"/> is <see langword="null"/>.
@@ -204,18 +205,63 @@ namespace Drexel.Collections.Generic.Internals
         }
 
         /// <inheritdoc/>
-        public bool Remove(T item) => this.collection.Remove(item);
+        public bool Remove(T item)
+        {
+            if (this.collection.IsReadOnly)
+            {
+                throw new NotSupportedException(ExceptionMessages.CollectionIsReadOnly);
+            }
+
+            if (this.Contains(item))
+            {
+                return this.collection.Remove(item);
+            }
+
+            return false;
+        }
 
         /// <inheritdoc/>
         public bool SetEquals(IEnumerable<T> other)
         {
-            throw new NotImplementedException();
+            int length = 0;
+            IEnumerator<T> enumerator = other.GetEnumerator();
+            for (; enumerator.MoveNext(); length++)
+            {
+                if (!this.Contains(enumerator.Current))
+                {
+                    return false;
+                }
+            }
+
+            return this.Count == length;
         }
 
         /// <inheritdoc/>
         public void SymmetricExceptWith(IEnumerable<T> other)
         {
-            throw new NotImplementedException();
+            if (this.collection.IsReadOnly)
+            {
+                throw new NotSupportedException(ExceptionMessages.CollectionIsReadOnly);
+            }
+
+            if (other is null)
+            {
+                throw new ArgumentNullException(nameof(other));
+            }
+
+            List<T> elementsToRemove = new List<T>();
+            foreach (T element in other)
+            {
+                if (this.Contains(element))
+                {
+                    elementsToRemove.Add(element);
+                }
+            }
+
+            foreach (T element in elementsToRemove)
+            {
+                this.collection.Remove(element);
+            }
         }
 
         /// <inheritdoc/>
