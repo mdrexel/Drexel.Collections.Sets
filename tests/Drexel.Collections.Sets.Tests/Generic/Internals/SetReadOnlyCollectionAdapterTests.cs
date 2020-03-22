@@ -118,5 +118,36 @@ namespace Drexel.Collections.Tests.Generic.Internals
                 Assert.AreEqual(-1, destination[counter]);
             }
         }
+
+        [TestMethod]
+        public void SetReadOnlyCollectionAdapter_CopyTo_IndexLessThanZero_ThrowsArgumentOutOfRange()
+        {
+            SetReadOnlyCollectionAdapter<int> adapter =
+                new SetReadOnlyCollectionAdapter<int>(new int[5]);
+            ArgumentOutOfRangeException e = Assert.ThrowsException<ArgumentOutOfRangeException>(
+                () => adapter.CopyTo(new int[5], -1));
+            StringAssert.StartsWith(
+                e.Message,
+                ExceptionMessages.ArrayIndexBelowLowerBound);
+        }
+
+        [DataTestMethod]
+        [DataRow(6, 4, 0)]
+        [DataRow(6, 5, 1)]
+        [DataRow(6, 6, 1)]
+        [DataRow(12, 7, 4)]
+        public void SetReadOnlyCollectionAdapter_CopyTo_DestinationArrayTooSmall_ThrowsArgumentException(
+            int sourceArraySize,
+            int destinationArraySize,
+            int destinationStartIndexInclusive)
+        {
+            SetReadOnlyCollectionAdapter<int> adapter =
+                new SetReadOnlyCollectionAdapter<int>(new int[sourceArraySize]);
+            ArgumentException e = Assert.ThrowsException<ArgumentException>(
+                () => adapter.CopyTo(new int[destinationArraySize], destinationStartIndexInclusive));
+            StringAssert.StartsWith(
+                e.Message,
+                ExceptionMessages.DestinationArrayNotLongEnough);
+        }
     }
 }
