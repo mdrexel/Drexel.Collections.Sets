@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using Drexel.Collections.Generic;
+using Drexel.Collections.Generic.Internals;
 using Drexel.Collections.Tests.Shared.Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Drexel.Collections.Tests.Generic
+namespace Drexel.Collections.Tests.Generic.Internals
 {
     [TestClass]
-    public class SetAdapterTests
+    public class SetSetAdapterTests
     {
         [TestMethod]
-        public void SetAdapter_Ctor_Succeeds()
+        public void SetSetAdapter_Ctor_Succeeds()
         {
             const int NumberOfMethods = 21;
 
@@ -65,7 +65,7 @@ namespace Drexel.Collections.Tests.Generic
                     x => methodsCalled[20]++);
 
 #pragma warning disable IDE0028 // Simplify collection initialization. Intentionally calling .Add separately for clarity
-            SetAdapter<int> set = new SetAdapter<int>(backingSet);
+            SetSetAdapter<int> set = new SetSetAdapter<int>(backingSet);
 #pragma warning restore IDE0028 // Simplify collection initialization
 
             set.Add(12);
