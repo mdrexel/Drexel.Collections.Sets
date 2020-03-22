@@ -64,6 +64,29 @@ namespace Drexel.Collections.Generic
             this.adapter = new SetReadOnlyCollectionAdapter<T>(collection, comparer);
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SetAdapter{T}"/> class, wrapping the specified
+        /// <see cref="System.Collections.Generic.ICollection{T}"/> <paramref name="collection"/>. It is assumed that
+        /// the contents of the collection represent a valid set, where "valid" is determined by the caller.
+        /// </summary>
+        /// <param name="collection">
+        /// The collection to wrap.
+        /// </param>
+        /// <param name="comparer">
+        /// The comparer to use when comparing equality of instances contained by <paramref name="collection"/>. This
+        /// comparer is used when the methods on the <see cref="ISet{T}"/> interface are called. If
+        /// <see langword="null"/>, the default equality comparer for the type <typeparamref name="T"/> will be used.
+        /// </param>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown when <paramref name="collection"/> is <see langword="null"/>.
+        /// </exception>
+        public SetAdapter(
+            ICollection<T> collection,
+            IEqualityComparer<T>? comparer = null)
+        {
+            this.adapter = new SetCollectionAdapter<T>(collection, comparer);
+        }
+
         /// <inheritdoc/>
         public int Count => this.adapter.Count;
 
