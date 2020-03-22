@@ -131,7 +131,8 @@ namespace Drexel.Collections.Generic.Internals
         }
 
         /// <inheritdoc/>
-        public void ExceptWith(IEnumerable<T> other) => throw new NotImplementedException();
+        public void ExceptWith(IEnumerable<T> other) =>
+            throw new NotSupportedException(ExceptionMessages.CollectionIsReadOnly);
 
         /// <inheritdoc/>
         public IEnumerator<T> GetEnumerator() => this.collection.GetEnumerator();
@@ -143,34 +144,65 @@ namespace Drexel.Collections.Generic.Internals
         }
 
         /// <inheritdoc/>
-        public void IntersectWith(IEnumerable<T> other) => throw new NotImplementedException();
+        public void IntersectWith(IEnumerable<T> other) =>
+            throw new NotSupportedException(ExceptionMessages.CollectionIsReadOnly);
 
         /// <inheritdoc/>
-        public bool IsProperSubsetOf(IEnumerable<T> other) => throw new NotImplementedException();
+        public bool IsProperSubsetOf(IEnumerable<T> other)
+        {
+            return new HashSet<T>(this.collection, this.comparer).IsProperSubsetOf(other);
+        }
 
         /// <inheritdoc/>
-        public bool IsProperSupersetOf(IEnumerable<T> other) => throw new NotImplementedException();
+        public bool IsProperSupersetOf(IEnumerable<T> other)
+        {
+            return new HashSet<T>(this.collection, this.comparer).IsProperSupersetOf(other);
+        }
 
         /// <inheritdoc/>
-        public bool IsSubsetOf(IEnumerable<T> other) => throw new NotImplementedException();
+        public bool IsSubsetOf(IEnumerable<T> other)
+        {
+            return new HashSet<T>(this.collection, this.comparer).IsSubsetOf(other);
+        }
 
         /// <inheritdoc/>
-        public bool IsSupersetOf(IEnumerable<T> other) => throw new NotImplementedException();
+        public bool IsSupersetOf(IEnumerable<T> other)
+        {
+            return new HashSet<T>(this.collection, this.comparer).IsSupersetOf(other);
+        }
 
         /// <inheritdoc/>
-        public bool Overlaps(IEnumerable<T> other) => throw new NotImplementedException();
+        public bool Overlaps(IEnumerable<T> other)
+        {
+            if (other is null)
+            {
+                throw new ArgumentNullException(nameof(other));
+            }
+            else if (this.collection.Count == 0)
+            {
+                return true;
+            }
+
+            return new HashSet<T>(this.collection, this.comparer).Overlaps(other);
+        }
 
         /// <inheritdoc/>
-        public bool Remove(T item) => throw new NotImplementedException();
+        public bool Remove(T item) =>
+            throw new NotSupportedException(ExceptionMessages.CollectionIsReadOnly);
 
         /// <inheritdoc/>
-        public bool SetEquals(IEnumerable<T> other) => throw new NotImplementedException();
+        public bool SetEquals(IEnumerable<T> other)
+        {
+            return new HashSet<T>(this.collection, this.comparer).SetEquals(other);
+        }
 
         /// <inheritdoc/>
-        public void SymmetricExceptWith(IEnumerable<T> other) => throw new NotImplementedException();
+        public void SymmetricExceptWith(IEnumerable<T> other) =>
+            throw new NotSupportedException(ExceptionMessages.CollectionIsReadOnly);
 
         /// <inheritdoc/>
-        public void UnionWith(IEnumerable<T> other) => throw new NotImplementedException();
+        public void UnionWith(IEnumerable<T> other) =>
+            throw new NotSupportedException(ExceptionMessages.CollectionIsReadOnly);
 
         /// <inheritdoc/>
         void ICollection<T>.Add(T item) => this.Add(item);
