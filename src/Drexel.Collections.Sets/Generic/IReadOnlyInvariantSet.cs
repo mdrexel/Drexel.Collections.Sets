@@ -36,6 +36,9 @@ namespace Drexel.Collections.Generic
         /// <see langword="true"/> if the current set is a subset of the specified <paramref name="other"/>; otherwise,
         /// <see langword="false"/>.
         /// </returns>
+        /// <exception cref="System.ArgumentNullException">
+        /// Thrown when <paramref name="other"/> is <see langword="null"/>.
+        /// </exception>
         bool IsSubsetOf(IEnumerable<T> other);
 
         /// <summary>
@@ -49,6 +52,9 @@ namespace Drexel.Collections.Generic
         /// <see langword="true"/> if the current set is a superset of the specified <paramref name="other"/>;
         /// otherwise, <see langword="false"/>.
         /// </returns>
+        /// <exception cref="System.ArgumentNullException">
+        /// Thrown when <paramref name="other"/> is <see langword="null"/>.
+        /// </exception>
         bool IsSupersetOf(IEnumerable<T> other);
 
         /// <summary>
@@ -63,6 +69,9 @@ namespace Drexel.Collections.Generic
         /// <see langword="true"/> if the current set is a proper subset of the specified <paramref name="other"/>;
         /// otherwise, <see langword="false"/>.
         /// </returns>
+        /// <exception cref="System.ArgumentNullException">
+        /// Thrown when <paramref name="other"/> is <see langword="null"/>.
+        /// </exception>
         bool IsProperSubsetOf(IEnumerable<T> other);
 
         /// <summary>
@@ -77,6 +86,9 @@ namespace Drexel.Collections.Generic
         /// <see langword="true"/> if the current set is a proper superset of the specified <paramref name="other"/>;
         /// otherwise, <see langword="false"/>.
         /// </returns>
+        /// <exception cref="System.ArgumentNullException">
+        /// Thrown when <paramref name="other"/> is <see langword="null"/>.
+        /// </exception>
         bool IsProperSupersetOf(IEnumerable<T> other);
 
         /// <summary>
@@ -90,6 +102,9 @@ namespace Drexel.Collections.Generic
         /// <see langword="true"/> if the current set overlaps the specified <paramref name="other"/>; otherwise,
         /// <see langword="false"/>.
         /// </returns>
+        /// <exception cref="System.ArgumentNullException">
+        /// Thrown when <paramref name="other"/> is <see langword="null"/>.
+        /// </exception>
         bool Overlaps(IEnumerable<T> other);
 
         /// <summary>
@@ -102,6 +117,9 @@ namespace Drexel.Collections.Generic
         /// <see langword="true"/> if the current set is equal to the specified <paramref name="other"/>; otherwise,
         /// <see langword="false"/>.
         /// </returns>
+        /// <exception cref="System.ArgumentNullException">
+        /// Thrown when <paramref name="other"/> is <see langword="null"/>.
+        /// </exception>
         bool SetEquals(IEnumerable<T> other);
     }
 }

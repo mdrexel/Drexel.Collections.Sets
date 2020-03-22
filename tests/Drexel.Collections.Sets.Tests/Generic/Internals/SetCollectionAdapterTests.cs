@@ -119,7 +119,7 @@ namespace Drexel.Collections.Tests.Generic.Internals
             List<int> backingList = new List<int>() { 12, 13, 14 };
             SetCollectionAdapter<int> adapter = new SetCollectionAdapter<int>(backingList);
 
-            adapter.ExceptWith(new int[] { 7, 13, 28, 12 });
+            adapter.ExceptWith(new int[] { 7, 13, 28, 12, 13, 13, 12 });
 
             Assert.AreEqual(1, backingList.Count);
             Assert.AreEqual(14, backingList[0]);
@@ -156,7 +156,7 @@ namespace Drexel.Collections.Tests.Generic.Internals
             List<int> backingList = new List<int>() { 12, 13, 14, 15, 16 };
             SetCollectionAdapter<int> adapter = new SetCollectionAdapter<int>(backingList);
 
-            adapter.IntersectWith(new int[] { 7, 16, 94, 14 });
+            adapter.IntersectWith(new int[] { 7, 16, 94, 14, 14, 14, 14 });
 
             CollectionAssert.AreEquivalent(new int[] { 14, 16 }, backingList);
         }
@@ -192,6 +192,70 @@ namespace Drexel.Collections.Tests.Generic.Internals
             Assert.AreEqual(
                 ExceptionMessages.CollectionIsReadOnly,
                 e.Message);
+        }
+
+        [TestMethod]
+        public void SetCollectionAdapter_SetEquals_Null_ThrowArgumentNull()
+        {
+            List<int> backingList = new List<int>() { 12, 13, 14 };
+            SetCollectionAdapter<int> adapter = new SetCollectionAdapter<int>(backingList);
+
+            Assert.ThrowsException<ArgumentNullException>(
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
+                () => adapter.SetEquals(null));
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
+        }
+
+        [TestMethod]
+        public void SetCollectionAdapter_SetEquals_NotEqual_ReturnsFalse()
+        {
+            List<int> backingList = new List<int>() { 12, 13, 14 };
+            SetCollectionAdapter<int> adapter = new SetCollectionAdapter<int>(backingList);
+
+            Assert.IsFalse(adapter.SetEquals(new int[] { 6, 7, 12, 18, 13, 9 }));
+        }
+
+        [TestMethod]
+        public void SetCollectionAdapter_SetEquals_AreEqual_ReturnsTrue()
+        {
+            List<int> backingList = new List<int>() { 12, 13, 14 };
+            SetCollectionAdapter<int> adapter = new SetCollectionAdapter<int>(backingList);
+
+            Assert.IsTrue(adapter.SetEquals(new int[] { 14, 12, 13, 14, 13, 12 }));
+        }
+
+        [TestMethod]
+        public void SetCollectionAdapter_SymmetricExceptWith_Null_ThrowsArgumentNull()
+        {
+            List<int> backingList = new List<int>() { 12, 13, 14 };
+            SetCollectionAdapter<int> adapter = new SetCollectionAdapter<int>(backingList);
+
+            Assert.ThrowsException<ArgumentNullException>(
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
+                () => adapter.SymmetricExceptWith(null));
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
+        }
+
+        [TestMethod]
+        public void SetCollectionAdapter_SymmetricExceptWith_IsReadOnly_ThrowsNotSupported()
+        {
+            ICollection<int> backingList = new ReadOnlyCollection<int>(new List<int>() { 12, 13, 14 });
+            SetCollectionAdapter<int> adapter = new SetCollectionAdapter<int>(backingList);
+
+            NotSupportedException e = Assert.ThrowsException<NotSupportedException>(
+                () => adapter.SymmetricExceptWith(new int[] { 7, 13 }));
+            Assert.AreEqual(
+                ExceptionMessages.CollectionIsReadOnly,
+                e.Message);
+        }
+
+        [TestMethod]
+        public void SetCollectionAdapter_SymmetricExceptWith_Succeeds()
+        {
+            List<int> backingList = new List<int>() { 12, 13, 14 };
+            SetCollectionAdapter<int> adapter = new SetCollectionAdapter<int>(backingList);
+
+            adapter.SymmetricExceptWith(new int[] { 7, 13 });
         }
     }
 }

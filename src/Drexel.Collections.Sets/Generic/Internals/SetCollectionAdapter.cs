@@ -223,17 +223,13 @@ namespace Drexel.Collections.Generic.Internals
         /// <inheritdoc/>
         public bool SetEquals(IEnumerable<T> other)
         {
-            int length = 0;
-            IEnumerator<T> enumerator = other.GetEnumerator();
-            for (; enumerator.MoveNext(); length++)
+            if (other is null)
             {
-                if (!this.Contains(enumerator.Current))
-                {
-                    return false;
-                }
+                throw new ArgumentNullException(nameof(other));
             }
 
-            return this.Count == length;
+            HashSet<T> otherSet = new HashSet<T>(other, this.comparer);
+            return otherSet.SetEquals(this.collection);
         }
 
         /// <inheritdoc/>
@@ -271,15 +267,9 @@ namespace Drexel.Collections.Generic.Internals
         }
 
         /// <inheritdoc/>
-        void ICollection<T>.Add(T item)
-        {
-            throw new NotImplementedException();
-        }
+        void ICollection<T>.Add(T item) => this.Add(item);
 
         /// <inheritdoc/>
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
     }
 }
