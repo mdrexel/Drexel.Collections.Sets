@@ -17,7 +17,7 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/mdrexel/Drexel.Collections.Sets</PackageProjectUrl>
     <PackageTags>collection collections set sets drexel</PackageTags>
-    <PackageReleaseNotes>3.0.0: Added support for more adapters. Broke SetAdapter contract such that it no longer exposes the set it is adapting.
+    <PackageReleaseNotes>3.0.0: Added support for more adapters. Broke SetAdapter contract such that it no longer directly exposes the set it is adapting.
 2.0.0: Change target framework from .NET Standard 2.0 to .NET Standard 1.0
 1.0.0: Initial release</PackageReleaseNotes>
   </PropertyGroup>
