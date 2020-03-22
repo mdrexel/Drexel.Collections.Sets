@@ -55,49 +55,93 @@ namespace Drexel.Collections.Generic.Internals
         /// <inheritdoc/>
         public bool Add(T item)
         {
-            throw new NotImplementedException();
+            if (this.collection.IsReadOnly)
+            {
+                throw new NotSupportedException(ExceptionMessages.CollectionIsReadOnly);
+            }
+
+            if (this.Contains(item))
+            {
+                return false;
+            }
+
+            this.collection.Add(item);
+            return true;
         }
 
         /// <inheritdoc/>
-        public void Clear()
-        {
-            throw new NotImplementedException();
-        }
+        public void Clear() => this.collection.Clear();
 
         /// <inheritdoc/>
         public bool Contains(T item)
         {
-            throw new NotImplementedException();
+            foreach (T element in this.collection)
+            {
+                if (this.comparer.Equals(element, item))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         /// <inheritdoc/>
-        public void CopyTo(T[] array, int arrayIndex)
+        public void CopyTo(T[] array, int arrayIndex) => this.collection.CopyTo(array, arrayIndex);
+
+        /// <inheritdoc/>
+        public override bool Equals(object obj)
         {
-            throw new NotImplementedException();
+            if (obj is Drexel.Collections.Generic.ISet<T> asDrexelSet)
+            {
+                return this.Equals(asDrexelSet);
+            }
+            else if (obj is System.Collections.Generic.ICollection<T> asSystemCollection)
+            {
+                return this.Equals(asSystemCollection);
+            }
+
+            return false;
         }
 
         /// <inheritdoc/>
-        public bool Equals(ISet<T> other)
+        public bool Equals(Drexel.Collections.Generic.ISet<T> other)
         {
-            throw new NotImplementedException();
+            return base.Equals(other);
         }
 
         /// <inheritdoc/>
         public bool Equals(ICollection<T> other)
         {
-            throw new NotImplementedException();
+            return this.collection.Equals(other);
         }
 
         /// <inheritdoc/>
         public void ExceptWith(IEnumerable<T> other)
         {
-            throw new NotImplementedException();
+            if (this.collection.IsReadOnly)
+            {
+                throw new NotSupportedException(ExceptionMessages.CollectionIsReadOnly);
+            }
+
+            if (other is null)
+            {
+                throw new ArgumentNullException(nameof(other));
+            }
+
+            foreach (T element in other)
+            {
+                this.collection.Remove(element);
+            }
         }
 
         /// <inheritdoc/>
-        public IEnumerator<T> GetEnumerator()
+        public IEnumerator<T> GetEnumerator() => this.collection.GetEnumerator();
+
+        /// <inheritdoc/>
+        public override int GetHashCode()
         {
-            throw new NotImplementedException();
+            return base.GetHashCode();
         }
 
         /// <inheritdoc/>
