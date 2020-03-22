@@ -36,7 +36,11 @@ namespace Drexel.Collections.Tests.Generic.Internals
         {
             SetReadOnlyCollectionAdapter<string> adapter =
                 new SetReadOnlyCollectionAdapter<string>(Array.Empty<string>());
-            Assert.IsFalse(adapter.Add("foo"));
+            NotSupportedException e = Assert.ThrowsException<NotSupportedException>(
+                () => adapter.Add("Foo"));
+            Assert.AreEqual(
+                ExceptionMessages.CollectionIsReadOnly,
+                e.Message);
         }
 
         [TestMethod]

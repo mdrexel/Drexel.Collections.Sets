@@ -176,38 +176,35 @@ namespace Drexel.Collections.Generic.Internals
         /// <inheritdoc/>
         public bool IsProperSubsetOf(IEnumerable<T> other)
         {
-            throw new NotImplementedException();
+            return new HashSet<T>(this.collection, this.comparer).IsProperSubsetOf(other);
         }
 
         /// <inheritdoc/>
         public bool IsProperSupersetOf(IEnumerable<T> other)
         {
-            throw new NotImplementedException();
+            return new HashSet<T>(this.collection, this.comparer).IsProperSubsetOf(other);
         }
 
         /// <inheritdoc/>
         public bool IsSubsetOf(IEnumerable<T> other)
         {
-            throw new NotImplementedException();
+            return new HashSet<T>(this.collection, this.comparer).IsProperSubsetOf(other);
         }
 
         /// <inheritdoc/>
         public bool IsSupersetOf(IEnumerable<T> other)
         {
-            throw new NotImplementedException();
+            return new HashSet<T>(this.collection, this.comparer).IsProperSubsetOf(other);
         }
 
         /// <inheritdoc/>
         public bool Overlaps(IEnumerable<T> other)
         {
-            throw new NotImplementedException();
+            return new HashSet<T>(this.collection, this.comparer).IsProperSubsetOf(other);
         }
 
         /// <inheritdoc/>
-        public bool Remove(T item)
-        {
-            throw new NotImplementedException();
-        }
+        public bool Remove(T item) => this.collection.Remove(item);
 
         /// <inheritdoc/>
         public bool SetEquals(IEnumerable<T> other)
