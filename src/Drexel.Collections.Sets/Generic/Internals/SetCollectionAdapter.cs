@@ -245,6 +245,7 @@ namespace Drexel.Collections.Generic.Internals
                 throw new ArgumentNullException(nameof(other));
             }
 
+            List<T> elementsToAdd = new List<T>();
             List<T> elementsToRemove = new List<T>();
             foreach (T element in other)
             {
@@ -252,18 +253,43 @@ namespace Drexel.Collections.Generic.Internals
                 {
                     elementsToRemove.Add(element);
                 }
+                else
+                {
+                    elementsToAdd.Add(element);
+                }
             }
 
             foreach (T element in elementsToRemove)
             {
                 this.collection.Remove(element);
             }
+
+            foreach (T element in elementsToAdd)
+            {
+                this.collection.Add(element);
+            }
         }
 
         /// <inheritdoc/>
         public void UnionWith(IEnumerable<T> other)
         {
-            throw new NotImplementedException();
+            if (this.collection.IsReadOnly)
+            {
+                throw new NotSupportedException(ExceptionMessages.CollectionIsReadOnly);
+            }
+
+            if (other is null)
+            {
+                throw new ArgumentNullException(nameof(other));
+            }
+
+            foreach (T element in other)
+            {
+                if (!this.Contains(element))
+                {
+                    this.collection.Add(element);
+                }
+            }
         }
 
         /// <inheritdoc/>

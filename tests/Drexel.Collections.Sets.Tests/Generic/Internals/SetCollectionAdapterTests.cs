@@ -252,10 +252,48 @@ namespace Drexel.Collections.Tests.Generic.Internals
         [TestMethod]
         public void SetCollectionAdapter_SymmetricExceptWith_Succeeds()
         {
+            List<int> backingList = new List<int>() { 12, 13, 14, 15 };
+            SetCollectionAdapter<int> adapter = new SetCollectionAdapter<int>(backingList);
+
+            adapter.SymmetricExceptWith(new int[] { 7, 13, 8, 12, 13 });
+
+            CollectionAssert.AreEquivalent(new int[] { 7, 8, 14, 15 }, backingList);
+        }
+
+        [TestMethod]
+        public void SetCollectionAdapter_UnionWith_Null_ThrowsArgumentNull()
+        {
             List<int> backingList = new List<int>() { 12, 13, 14 };
             SetCollectionAdapter<int> adapter = new SetCollectionAdapter<int>(backingList);
 
-            adapter.SymmetricExceptWith(new int[] { 7, 13 });
+            Assert.ThrowsException<ArgumentNullException>(
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
+                () => adapter.UnionWith(null));
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
+        }
+
+        [TestMethod]
+        public void SetCollectionAdapter_UnionWith_IsReadOnly_ThrowsNotSupported()
+        {
+            ICollection<int> backingList = new ReadOnlyCollection<int>(new List<int>() { 12, 13, 14 });
+            SetCollectionAdapter<int> adapter = new SetCollectionAdapter<int>(backingList);
+
+            NotSupportedException e = Assert.ThrowsException<NotSupportedException>(
+                () => adapter.UnionWith(new int[] { 7, 13, 15 }));
+            Assert.AreEqual(
+                ExceptionMessages.CollectionIsReadOnly,
+                e.Message);
+        }
+
+        [TestMethod]
+        public void SetCollectionAdapter_UnionWith_Succeeds()
+        {
+            List<int> backingList = new List<int>() { 12, 13, 14 };
+            SetCollectionAdapter<int> adapter = new SetCollectionAdapter<int>(backingList);
+
+            adapter.UnionWith(new int[] { 7, 13, 8, 12, 13, 15 });
+
+            CollectionAssert.AreEquivalent(new int[] { 7, 8, 12, 13, 14, 15 }, backingList);
         }
     }
 }
