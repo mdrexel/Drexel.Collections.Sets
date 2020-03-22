@@ -55,7 +55,7 @@ namespace Drexel.Collections.Generic.Internals
         public bool IsReadOnly => true;
 
         /// <inheritdoc/>
-        public bool Add(T item) => throw new NotSupportedException(ExceptionMessages.CollectionIsReadOnly);
+        public bool Add(T item) => false;
 
         /// <inheritdoc/>
         public void Clear() => throw new NotSupportedException(ExceptionMessages.CollectionIsReadOnly);
