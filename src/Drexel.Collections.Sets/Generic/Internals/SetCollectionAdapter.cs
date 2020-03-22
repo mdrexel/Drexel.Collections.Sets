@@ -147,7 +147,30 @@ namespace Drexel.Collections.Generic.Internals
         /// <inheritdoc/>
         public void IntersectWith(IEnumerable<T> other)
         {
-            throw new NotImplementedException();
+            if (this.collection.IsReadOnly)
+            {
+                throw new NotSupportedException(ExceptionMessages.CollectionIsReadOnly);
+            }
+
+            if (other is null)
+            {
+                throw new ArgumentNullException(nameof(other));
+            }
+
+            HashSet<T> otherSet = new HashSet<T>(other, this.comparer);
+            List<T> elementsToRemove = new List<T>();
+            foreach (T element in this.collection)
+            {
+                if (!otherSet.Contains(element))
+                {
+                    elementsToRemove.Add(element);
+                }
+            }
+
+            foreach (T element in elementsToRemove)
+            {
+                this.collection.Remove(element);
+            }
         }
 
         /// <inheritdoc/>

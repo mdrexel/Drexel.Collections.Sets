@@ -124,5 +124,41 @@ namespace Drexel.Collections.Tests.Generic.Internals
             Assert.AreEqual(1, backingList.Count);
             Assert.AreEqual(14, backingList[0]);
         }
+
+        [TestMethod]
+        public void SetCollectionAdapter_IntersectWith_Null_ThrowsArgumentNull()
+        {
+            List<int> backingList = new List<int>() { 12, 13, 14 };
+            SetCollectionAdapter<int> adapter = new SetCollectionAdapter<int>(backingList);
+
+            Assert.ThrowsException<ArgumentNullException>(
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
+                () => adapter.IntersectWith(null));
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
+        }
+
+        [TestMethod]
+        public void SetCollectionAdapter_IntersectWith_IsReadOnly_ThrowsNotSupported()
+        {
+            ICollection<int> backingList = new ReadOnlyCollection<int>(new List<int>() { 12, 13, 14 });
+            SetCollectionAdapter<int> adapter = new SetCollectionAdapter<int>(backingList);
+
+            NotSupportedException e = Assert.ThrowsException<NotSupportedException>(
+                () => adapter.IntersectWith(new int[] { 7, 12 }));
+            Assert.AreEqual(
+                ExceptionMessages.CollectionIsReadOnly,
+                e.Message);
+        }
+
+        [TestMethod]
+        public void SetCollectionAdapter_IntersectWith_RemovesElementsNotContainedByOther()
+        {
+            List<int> backingList = new List<int>() { 12, 13, 14, 15, 16 };
+            SetCollectionAdapter<int> adapter = new SetCollectionAdapter<int>(backingList);
+
+            adapter.IntersectWith(new int[] { 7, 16, 94, 14 });
+
+            CollectionAssert.AreEquivalent(new int[] { 14, 16 }, backingList);
+        }
     }
 }
