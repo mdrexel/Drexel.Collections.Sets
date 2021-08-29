@@ -10,14 +10,15 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>4.0.0</Version>
+    <Version>5.0.0</Version>
     <Authors>Max Drexel</Authors>
     <Description>Defines an IImmutableSet that implements IReadOnlySet.</Description>
-    <Copyright>Copyright 2019-2020</Copyright>
+    <Copyright>Copyright 2019-2021</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/mdrexel/Drexel.Collections.Sets</PackageProjectUrl>
     <PackageTags>collection collections set sets immutable drexel</PackageTags>
-    <PackageReleaseNotes>4.0.0: Update dependency to latest major version; no code changes
+    <PackageReleaseNotes>5.0.0: Reconciled contract with the official .NET 5 implementation of IReadOnlySet.
+4.0.0: Update dependency to latest major version; no code changes
 3.0.0: Update dependency to latest major version; no code changes
 2.0.0: Change target framework from .NET Standard 2.0 to .NET Standard 1.0
 1.0.0: Initial release</PackageReleaseNotes>
@@ -30,7 +31,7 @@
 
   <ItemGroup>
     <PackageReference Include="Drexel.Collections.Sets" Version="4.0.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
