@@ -40,4 +40,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Generic\Internals\" />
+    <Folder Include="ObjectModel\" />
+  </ItemGroup>
+
 </Project>

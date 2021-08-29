@@ -42,4 +42,8 @@
     <PackageReference Include="System.Collections.Immutable" Version="5.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Immutable\" />
+  </ItemGroup>
+
 </Project>
